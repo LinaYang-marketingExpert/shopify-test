@@ -69,6 +69,7 @@
       {% render 'quick-add-modal' %}
     {% endif %}
 
-    {{ 'product-grid.js' | asset_url | script_tag }}
+    {% sections 'product-grid' %}
+
   </body>
 </html>
