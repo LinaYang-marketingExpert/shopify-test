@@ -1,0 +1,55 @@
+<section class="py-10">
+  <h2 class="text-2xl font-bold mb-6">{{ section.settings.heading }}</h2>
+
+  <div id="product-grid" class="grid grid-cols-2 md:grid-cols-5 gap-4">
+    {% for i in (1..10) %}
+      <div class="product-card group">
+        <img 
+          src="https://source.unsplash.com/random/300x300?sig={{ i }}" 
+          alt="Product {{ i }}" 
+          class="w-full object-cover rounded-lg"
+        >
+        <p class="mt-2 text-center">Product {{ i }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button 
+    id="show-more" 
+    class="block md:hidden mt-4 mx-auto bg-black text-white px-4 py-2 rounded"
+  >
+    Show More
+  </button>
+</section>
+
+<script>
+  const btn = document.getElementById('show-more');
+  const grid = document.getElementById('product-grid');
+  let expanded = false;
+  if (btn) {
+    btn.addEventListener('click', () => {
+      expanded = !expanded;
+      grid.classList.toggle('max-h-64');
+      btn.textContent = expanded ? 'Show Less' : 'Show More';
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid"
+    }
+  ]
+}
+{% endschema %}
